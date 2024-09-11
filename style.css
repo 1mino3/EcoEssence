@@ -1,0 +1,64 @@
+body {
+    color: rgb(255, 255, 255);
+    font-family: Arial, sans-serif, Times New Roman, serif, Impact;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#content {
+    background-color: #98b99c;
+    border-radius: 25px;
+    text-align: center;
+    height: auto;
+    max-width: 600px;
+    width: 90%;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+input[type="text"] {
+    background-color: rgba(255, 0, 0, 0);
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 17px;
+    text-align: left;
+    outline: none;
+    position: left;
+    padding-right: 50px;
+}
+
+button {
+    text-align: center;
+    display: flex;
+    align-items: right;
+    border-radius: 50px;
+    color: white;
+    font-size: 19px;
+    font-weight: bolder;
+    background-color: #609366;
+    padding: 10px;
+    padding-left: 17px;
+    padding-right: 17px;
+    border: none;
+    margin-top: 50px;
+}
+
+button:hover {
+    border: 0.5px solid black;
+    margin-top: 52px;
+    margin-right: 2px;
+    transition: 0.2s;
+}
+
+@media (max-width: 600px) {
+    .content {
+        width: 100%; /* Ajusta a largura da div para preencher a tela em dispositivos menores */
+        padding: 10px; /* Ajusta o padding para telas menores */
+    }
+}
