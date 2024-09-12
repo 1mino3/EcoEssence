@@ -1,245 +1,77 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatBot - EcoEssence</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport"
+  content="width=700"> 
+  <link rel="icon" href="html.ico" type="image/x-icon">
+  <title>EcoEssence</title>
+  
+  <link rel="stylesheet" href="style.css">
+
 </head>
 <body>
-    <main>
-        <form action="index.html">
-            <div id="content">
-                <p id="p_header">Olá! Tudo bem? Qual é  o seu nome?</p>
-                <input type="text"  id="text" name="text" placeholder="Escreva sua resposta aqui">
-                <div id="perguntas"></div>
-            </div>
-            <button type="button" id="proximo" onclick="clicar()">></button>
-        </form>
-    </main>
-
-    <script>
-
-        var input_ambient = window.document.getElementById('perguntas');
-        var button = window.document.getElementById('proximo');
-        var p_header = window.document.getElementById('p_header');
-        var text = window.document.getElementById('text');
-        var saves = [];
-        var count = 0;
-
-        // sabonetes
-        var argila_braca = 0; // para peles oleosas, acne, limpeza profunda, ingredientes naturais, esfoliante (para pessoas de abaixo de 30 anos)
-        var verde = 0; // para peles seca, ressecamento, hidratação, sem ingredientes naturais, suave (para pessoas acima de 60)
-        var dolomita = 0; // para peles sensiveis, nenhuma condição, suavização de linhas de expressão, ingredientes naturais, suave (para pessoas abaixo de 30)
-        var carvao_ativado = 0; // para peles normais, rugas, controle de oleosidade, não são produtos naturais,     esfoliante (para pessoas 45-60)
-        var camomila = 0; // para peles mistas, manchas, clareamento, naturais, não esfoliante (suave) (para pessoas 30-45)
-
-        function clicar() {
-            count++;
-            saves.push(text.value);
-            if (count == 1) {
-                var name = saves[0];
-                p_header.innerHTML = "Certo, " + name + "." + " Qual é a sua idade?";
-                text.value = "";
-            }
-
-            if (count == 2) {
-                saves.push(text.value);
-                var old = parseInt(saves[1]);  // Altíssimas chances de erro. Será feito um sistema de verificação em breve.
-                
-                if (old > 60) {
-                    verde++;
-                } else if (old > 45 && old <= 60) {
-                    carvao_ativado++;
-                } else if (old > 30 && old <= 45) {
-                    camomila++;
-                } else if (old <= 30) {
-                    dolomita++;
-                    argila_braca++;
-                }
-
-                p_header.innerHTML = "Ótimo! Na nossa empresa, desenvolvemos produtos pensados especialmente para peles maduras, mas que também podem ser usados por todos.";
-                text.value = "";
-                text.style.display = "none";
-            }
-
-            if (count == 3) {
-                p_header.innerHTML = "Temos cinco sabonetes: Argila braca, Verde, dolomita, carvão ativado e camomila";
-            }
-
-            if (count == 4) {
-                p_header.innerHTML = "Agora vamos fazer algumas perguntas para entender qual sabonete é ideal para você.";
-            }
-
-            if (count == 5) {
-                p_header.innerHTML = "Qual o seu tipo de pele?";
-
-                var pergunta_check1 = document.createElement('input');
-                pergunta_check1.type = "radio";
-                pergunta_check1.value = "1"; // Oleosa
-                pergunta_check1.name = "pele";
-                var pergunta_check2 = document.createElement('input');
-                pergunta_check2.type = "radio";
-                pergunta_check2.value = "2"; // Seca 
-                pergunta_check2.name = "pele";
-                var pergunta_check3 = document.createElement('input');
-                pergunta_check3.type = "radio";
-                pergunta_check3.value = "3"; // Normal 
-                pergunta_check3.name = "pele";
-                var pergunta_check4 = document.createElement('input');
-                pergunta_check4.type = "radio";
-                pergunta_check4.value = "4" // Mista
-                pergunta_check4.name = "pele";
-                var pergunta_check5 = document.createElement('input');
-                pergunta_check5.type = "radio";
-                pergunta_check5.value = "5"; // Sensivel
-                pergunta_check5.name = "pele";
-
-                var rot_1 = document.createElement('label');
-                rot_1.textContent = "Oleosa";
-                var rot_2 = document.createElement('label');
-                rot_2.textContent = "Seca";
-                var rot_3 = document.createElement('label');
-                rot_3.textContent = "Normal";
-                var rot_4 = document.createElement('label');
-                rot_4.textContent = "Mista";
-                var rot_5 = document.createElement('label');
-                rot_5.textContent = "Sensivel";
-
-                var br = document.createElement('br');
-
-                input_ambient.appendChild(rot_1);
-                input_ambient.appendChild(pergunta_check1);
-                input_ambient.appendChild(br.cloneNode())
-                input_ambient.appendChild(rot_2);
-                input_ambient.appendChild(pergunta_check2);
-                input_ambient.appendChild(br.cloneNode())
-                input_ambient.appendChild(rot_3);
-                input_ambient.appendChild(pergunta_check3);
-                input_ambient.appendChild(br.cloneNode())
-                input_ambient.appendChild(rot_4);
-                input_ambient.appendChild(pergunta_check4);
-                input_ambient.appendChild(br.cloneNode())
-                input_ambient.appendChild(rot_5);
-                input_ambient.appendChild(pergunta_check5);
-            }
-
-            if (count == 6) {
-                radios = window.document.getElementsByName('pele')
-                for (var c = 0; c < radios.length; c++) {
-                    if (radios[c].checked) {
-                        var selecionado = radios[c].value;
-                        var selecionado = parseInt(selecionado);
-                    }
-                }
-
-                if (selecionado == 1) {
-                    argila_braca++;
-                } else if (selecionado == 2) {
-                    verde++;
-                } else if (selecionado == 3) {
-                    carvao_ativado++;
-                } else if (selecionado == 4) {
-                    camomila++;
-                } else if (selecionado == 5) {
-                    dolomita++;
-                }
-
-
-                p_header.innerHTML = "Você tem alguma condição específica na pele?";
-                input_ambient.innerHTML = "";
-
-                var pergunta_check1 = document.createElement('input');
-                var pergunta_check2 = document.createElement('input');
-                var pergunta_check3 = document.createElement('input');
-                var pergunta_check4 = document.createElement('input');
-                var pergunta_check5 = document.createElement('input');
-                pergunta_check1.type = "radio";
-                pergunta_check1.value = "1"; // Acne
-                pergunta_check1.name = "condicao";
-                pergunta_check2.type = "radio";
-                pergunta_check2.value = "2"; // Rugas
-                pergunta_check2.name = "condicao";
-                pergunta_check3.type = "radio";
-                pergunta_check3.value = "3"; // Manchas
-                pergunta_check3.name = "condicao";
-                pergunta_check4.type = "radio";
-                pergunta_check4.value = "4"; // Ressecamento
-                pergunta_check4.name = "condicao";
-                pergunta_check5.type = "radio";
-                pergunta_check5.value = "5"; // Nenhuma
-                pergunta_check5.name = "condicao";
-
-
-                var rot_1 = document.createElement('label');
-                var rot_2 = document.createElement('label');
-                var rot_3 = document.createElement('label');
-                var rot_4 = document.createElement('label');
-                var rot_5 = document.createElement('label');
-                rot_1.textContent = "Acne";
-                rot_2.textContent = "Rugas";
-                rot_3.textContent = "Manhcas";
-                rot_4.textContent = "Ressecamento";
-                rot_5.textContent = "Nenhuma";
-
-                var br = document.createElement('br');
-
-                input_ambient.appendChild(rot_1);
-                input_ambient.appendChild(pergunta_check1);
-                input_ambient.appendChild(br.cloneNode())
-                input_ambient.appendChild(rot_2);
-                input_ambient.appendChild(pergunta_check2);
-                input_ambient.appendChild(br.cloneNode())
-                input_ambient.appendChild(rot_3);
-                input_ambient.appendChild(pergunta_check3);
-                input_ambient.appendChild(br.cloneNode())
-                input_ambient.appendChild(rot_4);
-                input_ambient.appendChild(pergunta_check4);
-                input_ambient.appendChild(br.cloneNode())
-                input_ambient.appendChild(rot_5);
-                input_ambient.appendChild(pergunta_check5);
-            }
-
-            if (count == 7) {
-                radios = window.document.getElementsByName('condicao')
-                for (var c = 0; c < radios.length; c++) {
-                    if (radios[c].checked) {
-                        var selecionado = radios[c].value;
-                        var selecionado = parseInt(selecionado);
-                    }
-                }
-
-                if (selecionado == 1) {
-                    argila_braca++;
-                } else if (selecionado == 2) {
-                    carvao_ativado++;
-                } else if  (selecionado == 3) {
-                    camomila++;
-                } else if (selecionado == 4) {
-                    verde++;
-                } else if (selecionado == 5) {
-                    dolomita++;
-                }
-            }
-
-            if (count == 8) {
-                input_ambient.style.display = "none";
-                var sabonete;
-                if (argila_braca > carvao_ativado && argila_braca > camomila && argila_braca > verde && argila_braca > dolomita) {
-                    var sabonete = "Argila Branca";
-                } else if (verde > carvao_ativado && verde > camomila && verde > argila_braca && verde > dolomita) {
-                    var sabonete = "Verde";
-                } else if  (carvao_ativado > argila_braca && carvao_ativado > camomila && carvao_ativado > verde && carvao_ativado > dolomita) {
-                    var sabonete = "Carvão Ativado";
-                } else if (dolomita > carvao_ativado && dolomita > camomila && dolomita > verde && dolomita > argila_braca) {
-                    var sabonete = "Dolomita";
-                } else if (camomila > carvao_ativado && camomila > argila_braca && camomila > verde && camomila > dolomita) {
-                    var sabonete = "Camomila"
-                }
-                p_header.innerHTML = `Com base nas suas respostas. Seu sabonete ideal é o ` + `<strong style="text-decoration: underline;">` + sabonete + `</strong>` ;
-            }
-        }
-
-    </script>
+  
+  <main>
+    <br>
+    <br>
+    <div id="tudo">
+      <div id="imagem">
+        <img src="image.jpg" alt="ex" id="img">
+        <hr>
+      </div>
+      <div>
+        <div id="site">
+          <h2 id="h1h1">Página inicial-EcoEssence Cosméticos</h2>
+          <hr>
+          <h2>Bem vindo(a) a EcoEssence Cosméticos</h2>
+          <p>Aqui na EcoEssence, combinamos sustentabilidade e inovação
+para criar cosméticos naturais que respeitam o meio ambiente e
+cuidam da sua pele. Nosso compromisso é oferecer produtos de
+alta qualidade, com fórmulas especiais para pele madura (não
+somente para a pele idosa) e fórmulas naturais, biodegradáveis e
+eficazes.</p>
+          <hr>
+          <h2>Nossos produtos:</h2>
+          <p>•Sabonete de Argila Branca<br>
+•Sabonete de Argila Preta<br>
+•Sabonete de Dolomita<br>
+•Sabonete de Carvão Ativado com Calêndula 
+          </p>
+          <hr>
+          <h2>Nossos compromissos</h2>
+          <p>•Produtos com Embalagem sustentável<br>
+•Foco na sustentabilidade<br>
+•Fórmulas naturais<br></p>
+          <hr>
+          <h2>Explore o que oferecemos<br>com ajuda do nosso Chat Bot (IA)</h2>
+          <p>Como funciona?<br>
+1. Responda as perguntas sobre sua pele.<br>
+2. Nossa IA analisará suas respostas e sugerirá o sabonete mais adequado para vc.<br>
+3. Tudo de forma personalizada e sustentável. 😉</p>
+          <h3>
+            <a href="chatbot.html">Entre em nosso Chat Bot</a>
+          </h3>
+        </div>
+        <hr> 
+        <div id="final">
+          <h1 class="textfinal">
+            EcoEssence
+          </h1>
+          <h2 class="textfinal">
+            Feito por:
+          </h2>
+          <h3 class="textfinal">
+            Pedro, Thais, Hellen,<br>
+            Arthur, Lucas, Eduarda,<br>
+            Angelo e Yago.
+          </h3>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+  </main>
 </body>
-</html>
+
+</html>    
