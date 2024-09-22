@@ -11,14 +11,552 @@
     <main>
         <form action="chatbot.html">
             <div id="content">
-                <p id="p_header">Olá! Tudo bem? Qual é  o seu nome?</p>
-                <input type="text"  id="text" name="text" placeholder="Escreva sua resposta aqui">
-                <div id="perguntas"></div>
+                <p id="p_header">Olá! Tudo bem? Qual é  o seu nome?</p> <!--Texto principal-->
+                <input type="text"  id="text" name="text" placeholder="Escreva sua resposta aqui"> <!--Respostas-->
+                <div id="perguntas"></div> <!--Respostas-->
             </div>
-            <button type="button" id="proximo" onclick="clicar()">></button>
+            <button type="button" id="proximo" onclick="clicar()">></button> <!--Passar etapa-->
         </form>
     </main>
 
-    <script src="script-chatbot.js"></script>
+    <script>
+
+        var input_ambient = window.document.getElementById('perguntas'); // Div que colocará os input
+        var button = window.document.getElementById('proximo'); // Butão para passar
+        var p_header = window.document.getElementById('p_header'); // Parágrafo do texto principal
+        var text = window.document.getElementById('text'); // Texto do nome e idade
+        var saves = []; // Salvamento das informações do text
+        var count = 0; // Contador de vezes do botão
+
+        // sabonetes
+        var argila_branca = 0; // Ideal para pele madura, este sabonete ajuda a revitalizar a pele, melhorando sua elasticidade e suavizando linhas de expressão graças às propriedades purificantes da argila branca e à riqueza mineral da dolomita.
+
+        var verde = 0; // Excelente para peles oleosas, a argila verde ajuda a controlar o excesso de sebo e a tratar acne, por ser rica em minerais que desintoxicam e revitalizam a pele.
+
+        var maracuja = 0; // Rico em vitaminas e antioxidantes, o sabonete de maracujá nutre e revitaliza a pele, deixando-a mais luminosa e cheia de vida.
+
+        var carvao_ativado = 0; // Com seu poder de limpeza profunda, este sabonete é perfeito para desintoxicar os poros, removendo impurezas e toxinas, ideal para ambientes urbanos.
+
+        var camomila = 0; // Conhecida por suas propriedades calmantes, a camomila é ideal para peles sensíveis ou irritadas, ajudando a suavizar e a acalmar a pele de maneira natural.
+
+        var intimo = 0; // Formulado para a higiene íntima, este sabonete mantém o equilíbrio natural da pele, oferecendo limpeza suave e segurança durante todo o dia.
+
+        var acafrao = 0; // Conhecido por suas propriedades anti-inflamatórias e antioxidantes, o açafrão ajuda a clarear manchas e melhorar a textura da pele, oferecendo um brilho natural.
+
+        var mel = 0; // Hidratante natural, o mel atrai umidade para a pele, tornando este sabonete ideal para quem busca nutrição e suavidade, especialmente em peles secas.
+
+        var aroeira = 0; // Este sabonete tem propriedades antissépticas e anti-inflamatórias, sendo ótimo para tratar problemas de pele como eczema e psoríase.
+
+        var argila_vermelha = 0; // Rica em ferro e silício, a argila vermelha é indicada para peles mais sensíveis e cansadas, promovendo a renovação celular e aumentando a elasticidade.
+
+        var aveia = 0; // A aveia, com suas propriedades esfoliantes, remove células mortas suavemente, enquanto oferece um efeito calmante, ideal para peles sensíveis ou irritadas.
+
+
+        
+        function clicar() {
+        count++; // Contabilizar os clicks
+        saves.push(text.value); // Salva os valores do text: saves[0] = nome, saves[1] = idade
+
+        if (count == 1) {
+            var name = saves[0];
+            if (name == "") {
+                var name = "Desconhecido"
+            }
+            p_header.innerHTML = "Certo, " + name + "." + " Qual é a sua idade?";
+            text.value = "";
+        }
+
+        if (count == 2) {
+            saves.push(text.value);
+            var old = parseInt(saves[1]); 
+
+            if (Number.isInteger(old)) {
+                var old = old;
+            } else {
+                var old = 0;
+            }  
+
+            p_header.innerHTML = "Ótimo! Na nossa empresa, desenvolvemos produtos pensados especialmente para peles maduras, mas que também podem ser usados por todos.";
+            text.value = "";
+            text.style.display = "none";
+        }
+
+        if (count == 3) {
+            p_header.innerHTML = "Temos 11 sabonetes:  Argila Branca com Dolomita, Argila Verde, Carvão Ativado, Camomila, Mel, Maracujá, Íntimo, Açafrão, Aroeira, Argila Vermelha e Aveia.";
+        }
+
+        if (count == 4) {
+            p_header.innerHTML = "Agora vamos fazer algumas perguntas para entender qual sabonete é ideal para você.";
+        }
+
+        if (count == 5) {
+            p_header.innerHTML = "Qual o seu tipo de pele?";
+
+            var pergunta_check1 = document.createElement('input');
+            pergunta_check1.type = "radio";
+            pergunta_check1.value = "1"; // Oleosa
+            pergunta_check1.name = "pele";
+            var pergunta_check2 = document.createElement('input');
+            pergunta_check2.type = "radio";
+            pergunta_check2.value = "2"; // Seca 
+            pergunta_check2.name = "pele";
+            var pergunta_check3 = document.createElement('input');
+            pergunta_check3.type = "radio";
+            pergunta_check3.value = "3"; // Normal 
+            pergunta_check3.name = "pele";
+            var pergunta_check4 = document.createElement('input');
+            pergunta_check4.type = "radio";
+            pergunta_check4.value = "4" // Mista
+            pergunta_check4.name = "pele";
+            var pergunta_check5 = document.createElement('input');
+            pergunta_check5.type = "radio";
+            pergunta_check5.value = "5"; // Sensivel
+            pergunta_check5.name = "pele";
+            var pergunta_check6 = document.createElement('input');
+            pergunta_check6.type = "radio";
+            pergunta_check6.value = "6"; // Madura
+            pergunta_check6.name = "pele";
+            
+
+            var rot_1 = document.createElement('label');
+            rot_1.textContent = "Oleosa";
+            var rot_2 = document.createElement('label');
+            rot_2.textContent = "Seca";
+            var rot_3 = document.createElement('label');
+            rot_3.textContent = "Normal";
+            var rot_4 = document.createElement('label');
+            rot_4.textContent = "Mista";
+            var rot_5 = document.createElement('label');
+            rot_5.textContent = "Sensivel";
+            var rot_6 = document.createElement('label');
+            rot_6.textContent = "Madura";
+
+            var br = document.createElement('br');
+
+            input_ambient.appendChild(rot_1);
+            input_ambient.appendChild(pergunta_check1);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_2);
+            input_ambient.appendChild(pergunta_check2);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_3);
+            input_ambient.appendChild(pergunta_check3);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_4);
+            input_ambient.appendChild(pergunta_check4);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_5);
+            input_ambient.appendChild(pergunta_check5);
+            input_ambient.appendChild(br.cloneNode);
+            input_ambient.appendChild(rot_6);
+            input_ambient.appendChild(pergunta_check6);
+        }
+
+        if (count == 6) {
+            radios = window.document.getElementsByName('pele')
+            for (var c = 0; c < radios.length; c++) {
+                if (radios[c].checked) {
+                    var selecionado = radios[c].value;
+                    var selecionado = parseInt(selecionado);
+                }
+            }
+
+            if (selecionado == 1) {
+                verde++;
+            } else if (selecionado == 2) {
+                mel++;
+            } else if (selecionado == 3) {
+                maracuja++;
+            } else if (selecionado == 4) {
+                acafrao++;
+            } else if (selecionado == 5) {
+                argila_vermelha++;
+            } else if (selecionado == 6) {
+                argila_branca++;
+            }
+
+
+            p_header.innerHTML = "Você tem alguma condição específica na pele?";
+            input_ambient.innerHTML = "";
+
+            var pergunta_check1 = document.createElement('input');
+            var pergunta_check2 = document.createElement('input');
+            var pergunta_check3 = document.createElement('input');
+            var pergunta_check4 = document.createElement('input');
+            var pergunta_check5 = document.createElement('input');
+            var pergunta_check6 = document.createElement('input');
+            pergunta_check1.type = "radio";
+            pergunta_check1.value = "1"; // Acne
+            pergunta_check1.name = "condicao";
+            pergunta_check2.type = "radio";
+            pergunta_check2.value = "2"; // Rugas
+            pergunta_check2.name = "condicao";
+            pergunta_check3.type = "radio";
+            pergunta_check3.value = "3"; // Manchas
+            pergunta_check3.name = "condicao";
+            pergunta_check4.type = "radio";
+            pergunta_check4.value = "4"; // Ressecamento
+            pergunta_check4.name = "condicao";
+            pergunta_check5.type = "radio";
+            pergunta_check5.value = "5"; // Inflamação
+            pergunta_check5.name = "condicao";
+            pergunta_check6.type = "radio";
+            pergunta_check6.value = "6"; // Nenhuma
+            pergunta_check6.name = "condicao";
+
+
+
+            var rot_1 = document.createElement('label');
+            var rot_2 = document.createElement('label');
+            var rot_3 = document.createElement('label');
+            var rot_4 = document.createElement('label');
+            var rot_5 = document.createElement('label');
+            var rot_6 = document.createElement('label');
+            rot_1.textContent = "Acne";
+            rot_2.textContent = "Rugas";
+            rot_3.textContent = "Manhcas";
+            rot_4.textContent = "Ressecamento";
+            rot_5.textContent = "Inflamação";
+            rot_6.textContent = "Nenhuma";
+
+            var br = document.createElement('br');
+
+            input_ambient.appendChild(rot_1);
+            input_ambient.appendChild(pergunta_check1);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_2);
+            input_ambient.appendChild(pergunta_check2);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_3);
+            input_ambient.appendChild(pergunta_check3);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_4);
+            input_ambient.appendChild(pergunta_check4);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_5);
+            input_ambient.appendChild(pergunta_check5);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_6);
+            input_ambient.appendChild(pergunta_check6);
+        }
+
+        if (count == 7) {
+            radios = window.document.getElementsByName('condicao')
+            for (var c = 0; c < radios.length; c++) {
+                if (radios[c].checked) {
+                    var selecionado = radios[c].value;
+                    var selecionado = parseInt(selecionado);
+                }
+            }
+
+            if (selecionado == 1) {
+                verde++;
+            } else if (selecionado == 2) {
+                argila_vermelha++;
+            } else if  (selecionado == 3) {
+                acafrao++;
+            } else if (selecionado == 4) {
+                maracuja++;
+            } else if (selecionado == 5) {
+                aveia++;
+            } else if (selecionado == 6) {
+                carvao_ativado++;
+            }
+
+            
+            p_header.innerHTML = "Qual resultado você espera ao usar o sabonete?";
+            input_ambient.innerHTML = "";
+
+            var pergunta_check1 = document.createElement('input');
+            var pergunta_check2 = document.createElement('input');
+            var pergunta_check3 = document.createElement('input');
+            var pergunta_check4 = document.createElement('input');
+            var pergunta_check5 = document.createElement('input');
+            var pergunta_check6 = document.createElement('input');
+            pergunta_check1.type = "radio";
+            pergunta_check1.value = "1"; // Hidratação
+            pergunta_check1.name = "result";
+            pergunta_check2.type = "radio";
+            pergunta_check2.value = "2"; // Limpeza Profunda
+            pergunta_check2.name = "result";
+            pergunta_check3.type = "radio";
+            pergunta_check3.value = "3"; // Clareamento
+            pergunta_check3.name = "result";
+            pergunta_check4.type = "radio";
+            pergunta_check4.value = "4"; // Controle de oleosidade
+            pergunta_check4.name = "result";
+            pergunta_check5.type = "radio";
+            pergunta_check5.value = "5"; // Suavização de linhas
+            pergunta_check5.name = "result";
+            pergunta_check6.type = "radio";
+            pergunta_check6.value = "6"; // Calmante
+            pergunta_check6.name = "result";
+
+
+
+            var rot_1 = document.createElement('label');
+            var rot_2 = document.createElement('label');
+            var rot_3 = document.createElement('label');
+            var rot_4 = document.createElement('label');
+            var rot_5 = document.createElement('label');
+            var rot_6 = document.createElement('label');
+            rot_1.textContent = "Hidratação";
+            rot_2.textContent = "Limpeza profunda";
+            rot_3.textContent = "Clareamento";
+            rot_4.textContent = "Controle de oleosidade";
+            rot_5.textContent = "Suavização de linhas";
+            rot_6.textContent = "Calmante";
+
+            var br = document.createElement('br');
+
+            input_ambient.appendChild(rot_1);
+            input_ambient.appendChild(pergunta_check1);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_2);
+            input_ambient.appendChild(pergunta_check2);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_3);
+            input_ambient.appendChild(pergunta_check3);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_4);
+            input_ambient.appendChild(pergunta_check4);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_5);
+            input_ambient.appendChild(pergunta_check5);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_6);
+            input_ambient.appendChild(pergunta_check6);
+
+        }
+
+        if (count == 8) {
+            radios = window.document.getElementsByName('result')
+            for (var c = 0; c < radios.length; c++) {
+                if (radios[c].checked) {
+                    var selecionado = radios[c].value;
+                    var selecionado = parseInt(selecionado);
+                }
+            }
+
+            if (selecionado == 1) {
+                mel++;
+            } else if (selecionado == 2) {
+                carvao_ativado++;
+            } else if  (selecionado == 3) {
+                maracuja++;
+            } else if (selecionado == 4) {
+                verde++;
+            } else if (selecionado == 5) {
+                argila_branca++;
+            } else if (selecionado == 6) {
+                camomila++;
+                aveia++;
+            }
+
+            p_header.innerHTML = "Você busca produtos com ingredientes naturais e sustentáveis?";
+            input_ambient.innerHTML = "";
+
+            var pergunta_check1 = document.createElement('input');
+            var pergunta_check2 = document.createElement('input');
+            var pergunta_check3 = document.createElement('input');
+            pergunta_check1.type = "radio";
+            pergunta_check1.value = "1"; // Sim
+            pergunta_check1.name = "ingredient";
+            pergunta_check2.type = "radio";
+            pergunta_check2.value = "2"; // Não é Necessário
+            pergunta_check2.name = "ingredient";
+            pergunta_check3.type = "radio";
+            pergunta_check3.value = "3"; // Prefiro Mistos
+            pergunta_check3.name = "ingredient";
+
+            var rot_1 = document.createElement('label');
+            var rot_2 = document.createElement('label');
+            var rot_3 = document.createElement('label');
+            rot_1.textContent = "Sim";
+            rot_2.textContent = "Não é necessário";
+            rot_3.textContent = "Prefiro mistos";
+
+            var br = document.createElement('br');
+
+            input_ambient.appendChild(rot_1);
+            input_ambient.appendChild(pergunta_check1);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_2);
+            input_ambient.appendChild(pergunta_check2);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_3);
+            input_ambient.appendChild(pergunta_check3);
+        }
+
+        if (count == 9) {
+            radios = window.document.getElementsByName('ingredient')
+            for (var c = 0; c < radios.length; c++) {
+                if (radios[c].checked) {
+                    var selecionado = radios[c].value;
+                    var selecionado = parseInt(selecionado);
+                }
+            }
+
+            if (selecionado == 1) {
+                verde++;
+                camomila++;
+                intimo++;
+                mel++;
+            }
+
+            p_header.innerHTML = "Você prefere um sabonete com ação esfoliante, calmante ou mais suave?";
+            input_ambient.innerHTML = "";
+
+            var pergunta_check1 = document.createElement('input');
+            var pergunta_check2 = document.createElement('input');
+            var pergunta_check3 = document.createElement('input');
+            pergunta_check1.type = "radio";
+            pergunta_check1.value = "1"; // Esfoliante
+            pergunta_check1.name = "action";
+            pergunta_check2.type = "radio";
+            pergunta_check2.value = "2"; // Calmante
+            pergunta_check2.name = "action";
+            pergunta_check3.type = "radio";
+            pergunta_check3.value = "3"; // Suave
+            pergunta_check3.name = "action";
+
+            var rot_1 = document.createElement('label');
+            var rot_2 = document.createElement('label');
+            var rot_3 = document.createElement('label');
+            rot_1.textContent = "Esfoliante";
+            rot_2.textContent = "Calmante";
+            rot_3.textContent = "Suave";
+
+            var br = document.createElement('br');
+
+            input_ambient.appendChild(rot_1);
+            input_ambient.appendChild(pergunta_check1);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_2);
+            input_ambient.appendChild(pergunta_check2);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_3);
+            input_ambient.appendChild(pergunta_check3);
+        }
+
+        if (count == 10) {
+            radios = window.document.getElementsByName('action')
+            for (var c = 0; c < radios.length; c++) {
+                if (radios[c].checked) {
+                    var selecionado = radios[c].value;
+                    var selecionado = parseInt(selecionado);
+                }
+            }
+
+            if (selecionado == 1) {
+                aveia++;
+            } else if (selecionado == 2) {
+                camomila++;
+            } else if (selecionado == 3) {
+                intimo++;
+            }
+        }
+
+        if (count == 11) {
+            input_ambient.style.display = "none";
+            var sabonete;
+            var descricao = 0;
+            if (argila_branca > verde && argila_branca > maracuja && argila_branca > carvao_ativado && argila_branca > camomila && argila_branca > intimo && argila_branca > acafrao &&
+            argila_branca > mel && argila_branca > aroeira && argila_branca > argila_vermelha &&
+            argila_branca > aveia) {
+
+                var sabonete = "Argila Branca com Dolomita";
+                var descricao = "Ideal para pele madura, este sabonete ajuda a revitalizar a pele, melhorando sua elasticidade e suavizando linhas de expressão graças às propriedades purificantes da argila branca e à riqueza mineral da dolomita.";
+
+            } else if (verde > argila_branca && verde > maracuja && verde > carvao_ativado &&
+                verde > camomila && verde > intimo && verde > acafrao &&
+                verde > mel && verde > aroeira && verde > argila_vermelha &&
+                verde > aveia) {
+
+                var sabonete = "Argila Verde";
+                var descricao = "Excelente para peles oleosas, a argila verde ajuda a controlar o excesso de sebo e a tratar acne, por ser rica em minerais que desintoxicam e revitalizam a pele.";
+
+            } else if (maracuja > argila_branca && maracuja > verde && maracuja > carvao_ativado &&
+                maracuja > camomila && maracuja > intimo && maracuja > acafrao &&
+                maracuja > mel && maracuja > aroeira && maracuja > argila_vermelha &&
+                maracuja > aveia) {
+
+                var sabonete = "Maracujá";
+                var descricao = "Rico em vitaminas e antioxidantes, o sabonete de maracujá nutre e revitaliza a pele, deixando-a mais luminosa e cheia de vida.";
+
+            } else if (carvao_ativado > argila_branca && carvao_ativado > verde && carvao_ativado > maracuja &&
+                carvao_ativado > camomila && carvao_ativado > intimo && carvao_ativado > acafrao &&
+                carvao_ativado > mel && carvao_ativado > aroeira && carvao_ativado > argila_vermelha &&
+                carvao_ativado > aveia) {
+
+                var sabonete = "Carvão Ativado";
+                var descricao = "Com seu poder de limpeza profunda, este sabonete é perfeito para desintoxicar os poros, removendo impurezas e toxinas, ideal para ambientes urbanos.";
+
+            } else if (camomila > argila_branca && camomila > verde && camomila > maracuja &&
+                camomila > carvao_ativado && camomila > intimo && camomila > acafrao &&
+                camomila > mel && camomila > aroeira && camomila > argila_vermelha &&
+                camomila > aveia) {
+
+                var sabonete = "Camomila";
+                var descricao = "Conhecida por suas propriedades calmantes, a camomila é ideal para peles sensíveis ou irritadas, ajudando a suavizar e a acalmar a pele de maneira natural.";
+
+            } else if (intimo > argila_branca && intimo > verde && intimo > maracuja &&
+                intimo > carvao_ativado && intimo > camomila && intimo > acafrao &&
+                intimo > mel && intimo > aroeira && intimo > argila_vermelha &&
+                intimo > aveia) {
+
+                var sabonete = "Sabonete Íntimo";
+                var descricao = "Formulado para a higiene íntima, este sabonete mantém o equilíbrio natural da pele, oferecendo limpeza suave e segurança durante todo o dia.";
+
+            } else if (acafrao > argila_branca && acafrao > verde && acafrao > maracuja &&
+                acafrao > carvao_ativado && acafrao > camomila && acafrao > intimo &&
+                acafrao > mel && acafrao > aroeira && acafrao > argila_vermelha &&
+                acafrao > aveia) {
+
+                var sabonete = "Açafrão";
+                var descricao = "Conhecido por suas propriedades anti-inflamatórias e antioxidantes, o açafrão ajuda a clarear manchas e melhorar a textura da pele, oferecendo um brilho natural.";
+
+            } else if (mel > argila_branca && mel > verde && mel > maracuja &&
+                mel > carvao_ativado && mel > camomila && mel > intimo &&
+                mel > acafrao && mel > aroeira && mel > argila_vermelha &&
+                mel > aveia) {
+
+                var sabonete = "Mel";
+                var descricao = "Hidratante natural, o mel atrai umidade para a pele, tornando este sabonete ideal para quem busca nutrição e suavidade, especialmente em peles secas.";
+
+            } else if (aroeira > argila_branca && aroeira > verde && aroeira > maracuja &&
+                aroeira > carvao_ativado && aroeira > camomila && aroeira > intimo &&
+                aroeira > acafrao && aroeira > mel && aroeira > argila_vermelha &&
+                aroeira > aveia) {
+
+                var sabonete = "Aroeira";
+                var descricao = "Este sabonete tem propriedades antissépticas e anti-inflamatórias, sendo ótimo para tratar problemas de pele como eczema e psoríase.";
+
+            } else if (argila_vermelha > argila_branca && argila_vermelha > verde && argila_vermelha > maracuja &&
+                argila_vermelha > carvao_ativado && argila_vermelha > camomila && argila_vermelha > intimo &&
+                argila_vermelha > acafrao && argila_vermelha > mel && argila_vermelha > aroeira &&
+                argila_vermelha > aveia) {
+
+                var sabonete = "Argila Vermelha";
+                var descricao = "Rica em ferro e silício, a argila vermelha é indicada para peles mais sensíveis e cansadas, promovendo a renovação celular e aumentando a elasticidade.";
+
+            } else if (aveia > argila_branca && aveia > verde && aveia > maracuja &&
+                aveia > carvao_ativado && aveia > camomila && aveia > intimo &&
+                aveia > acafrao && aveia > mel && aveia > aroeira &&
+                aveia > argila_vermelha) {
+
+                var sabonete = "Aveia";
+                var descricao = "A aveia, com suas propriedades esfoliantes, remove células mortas suavemente, enquanto oferece um efeito calmante, ideal para peles sensíveis ou irritadas.";
+            } 
+                    
+            if (descricao != 0) {
+                p_header.innerHTML = `Com base nas suas respostas, seu sabonete ideal é o <strong>${sabonete}</strong>. ${descricao}`;
+            } else {
+                p_header.innerHTML = `Estamos com um pouco de dificuldade para decidir seu sabonete ideal. Por favor, tente novamente.`;
+            }
+        }
+    }
+
+    </script>
 </body>
 </html>
