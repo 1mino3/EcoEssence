@@ -459,8 +459,8 @@
 
         if (count == 11) {
             input_ambient.style.display = "none";
-            var sabonete;
-            var descricao = 0;
+            var sabonete = "";
+            var descricao = "";
             if (argila_branca > verde && argila_branca > maracuja && argila_branca > carvao_ativado && argila_branca > camomila && argila_branca > intimo && argila_branca > acafrao &&
             argila_branca > mel && argila_branca > aroeira && argila_branca > argila_vermelha &&
             argila_branca > aveia) {
@@ -549,7 +549,7 @@
                 var descricao = "A aveia, com suas propriedades esfoliantes, remove células mortas suavemente, enquanto oferece um efeito calmante, ideal para peles sensíveis ou irritadas.";
             } 
                     
-            if (descricao != 0) {
+            if (descricao != "") {
                 p_header.innerHTML = `Com base nas suas respostas, seu sabonete ideal é o <strong>${sabonete}</strong>. ${descricao}`;
             } else {
                 p_header.innerHTML = `Estamos com um pouco de dificuldade para decidir seu sabonete ideal. Por favor, tente novamente.`;
