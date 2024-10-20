@@ -455,6 +455,81 @@
             } else if (selecionado == 3) {
                 intimo++;
             }
+            p_header.innerHTML = "Qual é o seu objetivo com o sabonete?";
+            input_ambient.innerHTML = "";
+
+            var pergunta_check1 = document.createElement('input');
+            var pergunta_check2 = document.createElement('input');
+            var pergunta_check3 = document.createElement('input');
+            pergunta_check1.type = "radio";
+            pergunta_check1.value = "1"; // Suave
+            pergunta_check1.name = "use";
+            pergunta_check2.type = "radio";
+            pergunta_check2.value = "2"; // leve
+            pergunta_check2.name = "use";
+            pergunta_check3.type = "radio";
+            pergunta_check3.value = "3"; // hidratação
+            pergunta_check3.name = "use";
+            pergunta_check3.type = "radio";
+            pergunta_check3.value = "3"; // oleosidade
+            pergunta_check3.name = "use";
+            pergunta_check3.type = "radio";
+            pergunta_check3.value = "3"; // íntimo
+            pergunta_check3.name = "use";
+
+            var rot_1 = document.createElement('label');
+            var rot_2 = document.createElement('label');
+            var rot_3 = document.createElement('label');
+            var rot_4 = document.createElement('label');
+            var rot_5 = document.createElement('label');
+            rot_1.textContent = "Limpeza suave";
+            rot_2.textContent = "Esfoliação leve";
+            rot_3.textContent = "Hidratação";
+            rot_4.textContent = "Controle de oleosidade";
+            rot_5.textContent = "Uso íntimo";
+
+            var br = document.createElement('br');
+
+            input_ambient.appendChild(rot_1);
+            input_ambient.appendChild(pergunta_check1);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_2);
+            input_ambient.appendChild(pergunta_check2);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_3);
+            input_ambient.appendChild(pergunta_check3);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_4);
+            input_ambient.appendChild(pergunta_check4);
+            input_ambient.appendChild(br.cloneNode())
+            input_ambient.appendChild(rot_5);
+            input_ambient.appendChild(pergunta_check5);
+        }
+
+        if (count == 11) {
+            radios = window.document.getElementsByName('use')
+            for (var c = 0; c < radios.length; c++) {
+                if (radios[c].checked) {
+                    var selecionado = radios[c].value;
+                    var selecionado = parseInt(selecionado);
+                }
+            }
+
+            if (selecionado == 1) {
+                aveia++;
+                mel++;
+            } else if (selecionado == 2) {
+                argila_vermelha++;
+                acafrao++;
+            } else if (selecionado == 3) {
+                argila_branca++;
+                maracuja++;
+            } else if (selecionado == 4) {
+                carvao_ativado++;
+                verde++;
+            } else if (selecionado == 5) {
+                intimo += 100;
+            }
         }
 
         if (count == 11) {
