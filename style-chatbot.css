@@ -33,6 +33,10 @@ input[type="text"] {
     padding-right: 50px;
 }
 
+input[type="checkbox"] {
+    border-radius: 20px;
+}
+
 button {
     text-align: center;
     display: flex;
