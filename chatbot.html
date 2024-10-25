@@ -630,7 +630,7 @@
             if (descricao != "") {
                 p_header.innerHTML = `Com base nas suas respostas, seu sabonete ideal é o <strong>${sabonete}</strong>. ${descricao}`;
             } else {
-                sabonetes = [
+                var sabonetes = [
                     [argila_branca, "Argila Branca com Dolomita"],
                     [verde, "Argila Verde"],
                     [maracuja, "Maracujá"],
@@ -644,9 +644,9 @@
                     [aveia, "Aveia"]
                 ]
 
-                sabonetes_maior = [argila_branca, verde, maracuja, carvao_ativado, camomila, intimo, acafrao, mel, aroeira, argila_vermelha, aveia]
-                numero = Math.max.apply(null, sabonetes_maior)
-                sabonetes_validos = []
+                var sabonetes_maior = [argila_branca, verde, maracuja, carvao_ativado, camomila, intimo, acafrao, mel, aroeira, argila_vermelha, aveia]
+                var numero = Math.max.apply(null, sabonetes_maior)
+                var sabonetes_validos = []
 
                 for (var c = 0; c < sabonetes.lenght; c++) {
                     if (sabonetes[c][0] >= numero) {
